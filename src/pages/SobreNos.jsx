@@ -1,14 +1,10 @@
 import { Check, Award, Users, Heart, Shield } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Topbar from '../components/Topbar'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 
 function SobreNos() {
   return (
     <div style={{ minHeight: '100vh' }}>
-      <Topbar />
-      <Header />
+
 
       <section style={{ background: 'linear-gradient(135deg, #0b1f33 0%, #1a3a5c 100%)', padding: '5rem 0', color: '#ffffff' }}>
         <div className="container">
@@ -68,7 +64,6 @@ function SobreNos() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

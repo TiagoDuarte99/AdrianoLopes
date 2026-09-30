@@ -1,66 +1,95 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Zap } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
-
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import iconePreto from '../assets/icone-preto.png';
 function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { path: '/', label: 'Início' },
     { path: '/paineis-solares', label: 'Painéis Solares' },
     { path: '/carregadores-carros-eletricos', label: 'Carregadores Elétricos' },
     { path: '/instalacoes-eletricas', label: 'Instalações' },
-    { path: '/eletricidade-condominios', label: 'Condomínios' },
     { path: '/obras-realizadas', label: 'Obras' },
     { path: '/sobre-nos', label: 'Sobre' },
     { path: '/contactos', label: 'Contactos' },
-  ]
+  ];
 
-  const isActive = (path) => location.pathname === path
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <header style={{
-      backgroundColor: '#ffffff',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000
-    }}>
+    <header
+      style={{
+        backgroundColor: '#ffffff',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+      }}
+    >
       <div className="container">
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '1rem 0'
-        }}>
-          {/* Logo */}
-          <Link to="/" style={{
+        <div
+          style={{
             display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '0.5rem',
-            textDecoration: 'none'
-          }}>
-            <div style={{
-              backgroundColor: '#0b1f33',
-              padding: '0.5rem',
-              borderRadius: '8px'
-            }}>
-              <Zap size={32} color="#f7b500" />
-            </div>
+            padding: '1rem 0',
+          }}
+        >
+          {/* Logo */}
+          <Link
+            to="/"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--spacing-sm)',
+              textDecoration: 'none',
+            }}
+          >
+            <img
+              src={iconePreto}
+              alt="EletricidadePro"
+              width="48"
+              height="48"
+              style={{
+                width: '48px',
+                height: '48px',
+                objectFit: 'contain',
+                flexShrink: 0,
+              }}
+            />
+
             <div>
-              <h1 style={{ fontSize: '1.5rem', margin: 0, color: '#0b1f33' }}>
-                Eletricidade<span style={{ color: '#f7b500' }}>Pro</span>
+              <h1
+                style={{
+                  fontSize: '1.5rem',
+                  margin: 0,
+                  color: 'var(--color-navy)',
+                  lineHeight: 1.2,
+                }}
+              >
+                Adriano Lopes
               </h1>
-              <p style={{ fontSize: '0.75rem', margin: 0, color: '#666' }}>
-                Soluções Energéticas
+
+              <p
+                style={{
+                  fontSize: '0.75rem',
+                  margin: 0,
+                  color: 'var(--color-text-light)',
+                }}
+              >
+                Instalações Elétricas
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav style={{ display: 'none', gap: '0.5rem' }} className="desktop-nav">
+          <nav
+            style={{ display: 'none', gap: '0.5rem' }}
+            className="desktop-nav"
+          >
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -71,15 +100,15 @@ function Header() {
                   color: isActive(item.path) ? '#f7b500' : '#0b1f33',
                   fontWeight: isActive(item.path) ? 600 : 400,
                   textDecoration: 'none',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive(item.path)) {
-                    e.target.style.backgroundColor = '#f4f7fa'
+                    e.target.style.backgroundColor = '#f4f7fa';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent'
+                  e.target.style.backgroundColor = 'transparent';
                 }}
               >
                 {item.label}
@@ -97,7 +126,7 @@ function Header() {
                 gap: '0.5rem',
                 color: '#0b1f33',
                 fontWeight: 600,
-                textDecoration: 'none'
+                textDecoration: 'none',
               }}
             >
               Ligar
@@ -119,11 +148,15 @@ function Header() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              padding: '0.5rem'
+              padding: '0.5rem',
             }}
             className="mobile-menu-btn"
           >
-            {isOpen ? <X size={28} color="#0b1f33" /> : <Menu size={28} color="#0b1f33" />}
+            {isOpen ? (
+              <X size={28} color="#0b1f33" />
+            ) : (
+              <Menu size={28} color="#0b1f33" />
+            )}
           </button>
         </div>
       </div>
@@ -139,7 +172,7 @@ function Header() {
             style={{
               backgroundColor: '#ffffff',
               borderTop: '1px solid #e0e0e0',
-              overflow: 'hidden'
+              overflow: 'hidden',
             }}
             className="mobile-nav"
           >
@@ -155,13 +188,23 @@ function Header() {
                     color: isActive(item.path) ? '#f7b500' : '#0b1f33',
                     fontWeight: isActive(item.path) ? 600 : 400,
                     textDecoration: 'none',
-                    borderBottom: index < navItems.length - 1 ? '1px solid #f4f7fa' : 'none'
+                    borderBottom:
+                      index < navItems.length - 1
+                        ? '1px solid #f4f7fa'
+                        : 'none',
                   }}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div
+                style={{
+                  padding: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.75rem',
+                }}
+              >
                 <a
                   href="tel:+351910000000"
                   className="btn btn-navy btn-block"
@@ -198,7 +241,7 @@ function Header() {
         }
       `}</style>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

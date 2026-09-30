@@ -2,9 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Phone} from 'lucide-react'
 import { motion } from 'framer-motion'
-import Topbar from '../components/Topbar'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import ProjectModal from '../components/ProjectModal'
 
@@ -22,8 +19,6 @@ function ObrasRealizadas() {
 
   return (
     <div style={{ minHeight: '100vh' }}>
-      <Topbar />
-      <Header />
 
       <section style={{ background: 'linear-gradient(135deg, #0b1f33 0%, #1a3a5c 100%)', padding: '5rem 0', color: '#ffffff' }}>
         <div className="container">
@@ -57,7 +52,6 @@ function ObrasRealizadas() {
         </div>
       </section>
 
-      <Footer />
       {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </div>
   )

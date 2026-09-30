@@ -8,7 +8,6 @@ import Home from './pages/Home'
 import PaineisSolares from './pages/PaineisSolares'
 import CarregadoresEletricos from './pages/CarregadoresEletricos'
 import InstalacoesEletricas from './pages/InstalacoesEletricas'
-import EletricidadeCondominios from './pages/EletricidadeCondominios'
 import ObrasRealizadas from './pages/ObrasRealizadas'
 import SobreNos from './pages/SobreNos'
 import Contactos from './pages/Contactos'
@@ -35,7 +34,6 @@ function App() {
           <Route path="paineis-solares" element={<PaineisSolares />} />
           <Route path="carregadores-carros-eletricos" element={<CarregadoresEletricos />} />
           <Route path="instalacoes-eletricas" element={<InstalacoesEletricas />} />
-          <Route path="eletricidade-condominios" element={<EletricidadeCondominios />} />
           <Route path="obras-realizadas" element={<ObrasRealizadas />} />
           <Route path="sobre-nos" element={<SobreNos />} />
           <Route path="contactos" element={<Contactos />} />
