@@ -1,6 +1,6 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
-import Topbar from './components/Topbar'
+/* import Topbar from './components/Topbar' */
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop';
@@ -17,7 +17,7 @@ import Servicos from './pages/Servicos'
 function Layout() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Topbar />
+      {/* <Topbar /> */}
       <Header />
       <main style={{ flex: 1 }}>
         <Outlet /> {/* aqui entra a página da rota atual */}
