@@ -9,9 +9,11 @@ function Header() {
 
   const navItems = [
     { path: '/', label: 'Início' },
-    { path: '/paineis-solares', label: 'Painéis Solares' },
+/*      { path: '/paineis-solares', label: 'Painéis Solares' },
     { path: '/carregadores-carros-eletricos', label: 'Carregadores Elétricos' },
-    { path: '/instalacoes-eletricas', label: 'Instalações' },
+    { path: '/instalacoes-eletricas', label: 'Instalações' }, */
+    { path: '/servicos', label: 'Serviços' },
+
     { path: '/obras-realizadas', label: 'Obras' },
     { path: '/sobre-nos', label: 'Sobre' },
     { path: '/contactos', label: 'Contactos' },
@@ -50,7 +52,7 @@ function Header() {
           >
             <img
               src={iconePreto}
-              alt="EletricidadePro"
+              alt="Adriano Lopes - Instalações Elétricas"
               width="48"
               height="48"
               style={{

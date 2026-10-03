@@ -1,12 +1,13 @@
 import { Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { siteConfig } from '../config/site';
 
 function Topbar() {
   return (
     <motion.div 
       className="topbar"
       style={{
-        backgroundColor: '#0b1f33',
+        backgroundColor: 'var(--color-navy)',
         color: '#ffffff',
         padding: '0.5rem 0',
         fontSize: '0.875rem'
@@ -24,7 +25,7 @@ function Topbar() {
           gap: '0.5rem'
         }}>
           <motion.a 
-            href="tel:+351910000000"
+            href={siteConfig.phoneLink}
             style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -35,10 +36,10 @@ function Topbar() {
             whileHover={{ scale: 1.05 }}
           >
             <Phone size={16} color="#f7b500" />
-            <span>+351 910 000 000</span>
+            <span>{siteConfig.phone}</span>
           </motion.a>
           <div style={{ color: '#cccccc' }}>
-            Porto, Maia, Matosinhos, Vila Nova de Gaia e arredores
+            {siteConfig.fullAddress}
           </div>
         </div>
       </div>
