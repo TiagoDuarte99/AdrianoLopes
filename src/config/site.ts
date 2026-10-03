@@ -1,7 +1,11 @@
-/* import logoBranco from '../assets/Logo-branco.png';
+import logoBranco from '../assets/Logo-branco.png';
 import logoPreto from '../assets/Logo-preto.png';
-import iconePreto from '../assets/icone-preto.png';
-import quadroEletrico from '../assets/quadro-eletrico.webp'; */
+import quadroEletrico from '../assets/quadro-eletrico.webp';
+import paineisSolares from '../assets/paineis-solares.webp';
+import carregadoresWallbox from '../assets/Carregadores-wallbox.webp';
+import electricidadeMoradia from '../assets/Electricidade-moradia.webp';
+import contactos from '../assets/contactos.webp';
+import obras from '../assets/obras.webp';
 
 export const siteConfig = {
   name: 'Adriano Lopes',
@@ -33,10 +37,29 @@ export const siteConfig = {
     sunday: 'Domingo: Encerrado',
   },
 
-/*   images: {
+  images: {
     logoWhite: logoBranco,
     logoDark: logoPreto,
-    iconDark: iconePreto,
+    paineisSolares: paineisSolares,
     heroBackground: quadroEletrico,
-  }, */
+    electricidadeMoradia: electricidadeMoradia,
+    carregadoresWallbox: carregadoresWallbox,
+    contactos: contactos,
+    obras:obras
+  },
+
+  serviceAreas: [
+    'Porto',
+    'Maia',
+    'Matosinhos',
+    'Vila Nova de Gaia',
+    'Valongo',
+    'Gondomar',
+    'Póvoa de Varzim',
+    'Vila do Conde',
+    'Braga',
+    'Guimarães',
+    'Famalicão',
+    'Barcelos',
+  ],
 };

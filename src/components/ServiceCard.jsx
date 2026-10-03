@@ -1,8 +1,74 @@
-import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-function ServiceCard({ icon: Icon, title, description, link, delay = 0 }) {
+function ServiceCard({
+  icon: Icon,
+  title,
+  description,
+  link,
+  backgroundImage,
+  delay = 0,
+}) {
+  const hasBackgroundImage = Boolean(backgroundImage);
+
+  const cardBaseStyle = {
+    borderRadius: 'var(--radius-lg)',
+    padding: 'var(--spacing-lg)',
+    boxShadow: 'var(--shadow-lg)',
+    border: hasBackgroundImage
+      ? '1px solid rgba(255,255,255,0.15)'
+      : '1px solid var(--color-border)',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    background: hasBackgroundImage
+      ? `url(${backgroundImage})`
+      : 'var(--color-white)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  };
+
+  const iconBoxStyle = {
+    width: '64px',
+    height: '64px',
+    backgroundColor: hasBackgroundImage
+      ? 'rgba(255,255,255,0.15)'
+      : 'var(--color-surface)',
+    borderRadius: 'var(--radius-md)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 'var(--spacing-md)',
+    backdropFilter: hasBackgroundImage ? 'blur(5px)' : undefined,
+  };
+
+  const titleStyle = {
+    fontSize: '1.5rem',
+    marginBottom: 'var(--spacing-sm)',
+    color: hasBackgroundImage ? 'var(--color-white)' : 'var(--color-navy)',
+  };
+
+  const descriptionStyle = {
+    color: hasBackgroundImage
+      ? 'rgba(255,255,255,0.88)'
+      : 'var(--color-text-light)',
+    marginBottom: 'var(--spacing-md)',
+    flex: 1,
+  };
+
+  const linkStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 'var(--spacing-xs)',
+    color: 'var(--color-yellow)',
+    fontWeight: 600,
+    textDecoration: 'none',
+    marginTop: 'auto',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -11,59 +77,35 @@ function ServiceCard({ icon: Icon, title, description, link, delay = 0 }) {
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -8 }}
       style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '12px',
-        padding: '2rem',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-        border: '1px solid #e8edf2',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column'
+        ...cardBaseStyle,
+        textDecoration: 'none',
       }}
     >
-      <div style={{
-        width: '64px',
-        height: '64px',
-        backgroundColor: '#f4f7fa',
-        borderRadius: '12px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '1.5rem'
-      }}>
-        <Icon size={32} color="#f7b500" />
-      </div>
-      <h3 style={{
-        fontSize: '1.5rem',
-        marginBottom: '1rem',
-        color: '#0b1f33'
-      }}>
-        {title}
-      </h3>
-      <p style={{
-        color: '#666666',
-        marginBottom: '1.5rem',
-        flex: 1
-      }}>
-        {description}
-      </p>
       <Link
         to={link}
         style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: '#f7b500',
-          fontWeight: 600,
           textDecoration: 'none',
-          marginTop: 'auto'
+          color: 'inherit',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
         }}
       >
-        Saber mais
-        <ArrowRight size={18} />
+        <div style={iconBoxStyle}>
+          <Icon size={32} color="var(--color-yellow)" />
+        </div>
+
+        <h3 style={titleStyle}>{title}</h3>
+
+        <p style={descriptionStyle}>{description}</p>
+
+        <span style={linkStyle}>
+          Saber mais
+          <ArrowRight size={18} />
+        </span>
       </Link>
     </motion.div>
-  )
+  );
 }
 
-export default ServiceCard
+export default ServiceCard;

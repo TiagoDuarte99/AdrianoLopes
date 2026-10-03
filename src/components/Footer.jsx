@@ -8,17 +8,27 @@ import {
   Instagram,
   Linkedin,
 } from 'lucide-react';
-import logoBranco from '../assets/Logo-branco.png';
 import { motion } from 'framer-motion';
+
+import { siteConfig } from '../config/site';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
 
   const serviceLinks = [
     { path: '/paineis-solares', label: 'Painéis Solares' },
-    { path: '/carregadores-carros-eletricos', label: 'Carregadores Elétricos' },
-    { path: '/instalacoes-eletricas', label: 'Instalações Elétricas' },
-    { path: '/eletricidade-condominios', label: 'Condomínios' },
+    {
+      path: '/carregadores-carros-eletricos',
+      label: 'Carregadores Elétricos',
+    },
+    {
+      path: '/instalacoes-eletricas',
+      label: 'Instalações Elétricas',
+    },
+    {
+      path: '/eletricidade-condominios',
+      label: 'Condomínios',
+    },
   ];
 
   const quickLinks = [
@@ -27,103 +37,73 @@ function Footer() {
     { path: '/contactos', label: 'Contactos' },
   ];
 
+  const linkStyle = {
+    color: 'var(--color-text-light)',
+    textDecoration: 'none',
+    transition: 'color 0.2s ease',
+  };
+
   return (
-    <footer
-      style={{
-        backgroundColor: '#0b1f33',
-        color: '#ffffff',
-        paddingTop: '4rem',
-      }}
-    >
+    <footer className="footer">
       <div className="container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '3rem',
-            paddingBottom: '3rem',
-          }}
-        >
-          {/* Brand */}
+        <div className="footer-grid">
+          {/* Marca */}
           <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '1.5rem',
-              }}
-            >
-              {/* Logo */}
+            <div className="footer-brand">
               <Link
                 to="/"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--spacing-sm)',
-                  textDecoration: 'none',
-                }}
+                aria-label={`Ir para a página inicial de ${siteConfig.name}`}
+                className="footer-logo-link"
               >
                 <img
-                  src={logoBranco}
-                  alt="Adriano Lopes - Instalações Elétricas"
+                  src={siteConfig.images.logoWhite}
+                  alt={`Logótipo de ${siteConfig.name}`}
                   width="48"
                   height="48"
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    objectFit: 'contain',
-                    flexShrink: 0,
-                  }}
+                  className="footer-logo"
                 />
 
                 <div>
-                  <h1
-                    style={{
-                      fontSize: '1.5rem',
-                      margin: 0,
-                      color: 'var(--color-white)',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    Adriano Lopes
-                  </h1>
+                  <div className="footer-brand-name">
+                    {siteConfig.name}
+                  </div>
 
-                  <p
-                    style={{
-                      fontSize: '0.75rem',
-                      margin: 0,
-                      color: 'var(--color-white)',
-                    }}
-                  >
+                  <p className="footer-brand-description">
                     Instalações Elétricas
                   </p>
                 </div>
               </Link>
             </div>
-            <p style={{ color: '#cccccc', marginBottom: '1.5rem' }}>
-              +15 anos de experiência em instalações elétricas, painéis solares
+
+            <p className="footer-description">
+              Soluções profissionais em instalações elétricas, painéis solares
               e carregadores para veículos elétricos.
             </p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+
+            <div className="footer-socials">
               <motion.a
                 href="#"
+                aria-label="Facebook"
                 whileHover={{ scale: 1.1 }}
-                style={{ color: '#ffffff' }}
+                className="footer-social-link"
               >
                 <Facebook size={24} />
               </motion.a>
+
               <motion.a
                 href="#"
+                aria-label="Instagram"
                 whileHover={{ scale: 1.1 }}
-                style={{ color: '#ffffff' }}
+                className="footer-social-link"
               >
                 <Instagram size={24} />
               </motion.a>
+
               <motion.a
                 href="#"
+                aria-label="LinkedIn"
                 whileHover={{ scale: 1.1 }}
-                style={{ color: '#ffffff' }}
+                className="footer-social-link"
               >
                 <Linkedin size={24} />
               </motion.a>
@@ -132,33 +112,22 @@ function Footer() {
 
           {/* Serviços */}
           <div>
-            <h3
-              style={{
-                color: '#f7b500',
-                marginBottom: '1.5rem',
-                fontSize: '1.25rem',
-              }}
-            >
-              Serviços
-            </h3>
-            <ul
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-              }}
-            >
+            <h2 className="footer-title">Serviços</h2>
+
+            <ul className="footer-links-list">
               {serviceLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    style={{
-                      color: '#cccccc',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s ease',
+                    style={linkStyle}
+                    onMouseEnter={(event) => {
+                      event.currentTarget.style.color =
+                        'var(--color-yellow)';
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = '#f7b500')}
-                    onMouseLeave={(e) => (e.target.style.color = '#cccccc')}
+                    onMouseLeave={(event) => {
+                      event.currentTarget.style.color =
+                        'var(--color-text-light)';
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -167,35 +136,24 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Links Rápidos */}
+          {/* Links rápidos */}
           <div>
-            <h3
-              style={{
-                color: '#f7b500',
-                marginBottom: '1.5rem',
-                fontSize: '1.25rem',
-              }}
-            >
-              Links Rápidos
-            </h3>
-            <ul
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-              }}
-            >
+            <h2 className="footer-title">Links Rápidos</h2>
+
+            <ul className="footer-links-list">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    style={{
-                      color: '#cccccc',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s ease',
+                    style={linkStyle}
+                    onMouseEnter={(event) => {
+                      event.currentTarget.style.color =
+                        'var(--color-yellow)';
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = '#f7b500')}
-                    onMouseLeave={(e) => (e.target.style.color = '#cccccc')}
+                    onMouseLeave={(event) => {
+                      event.currentTarget.style.color =
+                        'var(--color-text-light)';
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -206,109 +164,73 @@ function Footer() {
 
           {/* Contactos */}
           <div>
-            <h3
-              style={{
-                color: '#f7b500',
-                marginBottom: '1.5rem',
-                fontSize: '1.25rem',
-              }}
-            >
-              Contactos
-            </h3>
-            <ul
-              style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-            >
-              <li
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.75rem',
-                }}
-              >
-                <Phone size={20} color="#f7b500" style={{ flexShrink: 0 }} />
+            <h2 className="footer-title">Contactos</h2>
+
+            <ul className="footer-contact-list">
+              <li className="footer-contact-item">
+                <Phone className="footer-icon" size={20} />
+
                 <div>
                   <a
-                    href="tel:+351910000000"
-                    style={{ color: '#ffffff', textDecoration: 'none' }}
+                    href={siteConfig.phoneLink}
+                    className="footer-contact-link"
                   >
-                    +351 910 000 000
+                    {siteConfig.phone}
                   </a>
-                  <p
-                    style={{
-                      color: '#cccccc',
-                      fontSize: '0.875rem',
-                      margin: 0,
-                    }}
-                  >
+
+                  <p className="footer-contact-note">
                     Chamada para rede móvel nacional
                   </p>
                 </div>
               </li>
-              <li
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.75rem',
-                }}
-              >
-                <Mail size={20} color="#f7b500" style={{ flexShrink: 0 }} />
+
+              <li className="footer-contact-item">
+                <Mail className="footer-icon" size={20} />
+
                 <a
-                  href="mailto:geral@seusite.pt"
-                  style={{ color: '#ffffff', textDecoration: 'none' }}
+                  href={siteConfig.emailLink}
+                  className="footer-contact-link"
                 >
-                  geral@seusite.pt
+                  {siteConfig.email}
                 </a>
               </li>
-              <li
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.75rem',
-                }}
-              >
-                <MapPin size={20} color="#f7b500" style={{ flexShrink: 0 }} />
-                <span style={{ color: '#ffffff' }}>
-                  Porto, Maia, Matosinhos, Vila Nova de Gaia
-                </span>
+
+              <li className="footer-contact-item">
+                <MapPin className="footer-icon" size={20} />
+
+                <a
+                  href={siteConfig.googleMapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-contact-link"
+                >
+                  {siteConfig.address.street}
+                  <br />
+                  {siteConfig.address.postalCode}{' '}
+                  {siteConfig.address.city}
+                  <br />
+                  {siteConfig.address.country}
+                </a>
               </li>
-              <li
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.75rem',
-                }}
-              >
-                <Clock size={20} color="#f7b500" style={{ flexShrink: 0 }} />
-                <div style={{ color: '#ffffff' }}>
-                  <p style={{ margin: 0 }}>Seg - Sex: 08:00 - 19:00</p>
-                  <p
-                    style={{
-                      margin: 0,
-                      color: '#cccccc',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    Sábado: 09:00 - 13:00
-                  </p>
+
+              <li className="footer-contact-item">
+                <Clock className="footer-icon" size={20} />
+
+                <div className="footer-schedule">
+                  <p>{siteConfig.schedule.weekdays}</p>
+                  <p>{siteConfig.schedule.saturday}</p>
+                  <p>{siteConfig.schedule.sunday}</p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div
-          style={{
-            borderTop: '1px solid rgba(255,255,255,0.1)',
-            paddingTop: '2rem',
-            paddingBottom: '2rem',
-            textAlign: 'center',
-            color: '#cccccc',
-            fontSize: '0.875rem',
-          }}
-        >
-          <p style={{ margin: 0 }}>
-            &copy; {currentYear} EletricidadePro. Todos os direitos reservados.
+        {/* Barra inferior */}
+        <div className="footer-bottom">
+          <p>
+            &copy; {currentYear} {siteConfig.name}. Todos os direitos
+            reservados.
           </p>
         </div>
       </div>

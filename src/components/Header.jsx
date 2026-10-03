@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import iconePreto from '../assets/icone-preto.png';
+import { siteConfig } from '../config/site';
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -51,7 +52,7 @@ function Header() {
             }}
           >
             <img
-              src={iconePreto}
+              src={siteConfig.images.logoDark}
               alt="Adriano Lopes - Instalações Elétricas"
               width="48"
               height="48"

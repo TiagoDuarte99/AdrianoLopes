@@ -4,7 +4,6 @@ import {
   Sun,
   Battery,
   Wrench,
-  Building,
   Check,
   Star,
   MapPin,
@@ -16,8 +15,8 @@ import ServiceCard from '../components/ServiceCard';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
 import FAQ from '../components/FAQ';
-
-import quadroEletrico from '../assets/quadro-eletrico.webp';
+import { siteConfig } from '../config/site';
+import ZonasMarquee from '../components/ZonasMarquee';
 
 const projects = [
   {
@@ -112,7 +111,7 @@ function Home() {
         rgba(0, 0, 0, 0.80),
         rgba(0, 0, 0, 0.65)
       ),
-      url(${quadroEletrico})
+      url(${siteConfig.images.heroBackground})
     `,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -183,7 +182,7 @@ function Home() {
                   /* backgroundColor: 'rgba(255,255,255,0.1)', */
                   borderRadius: 'var(--radius-xl)',
                   padding: 'var(--spacing-xl)',
-                /*   backdropFilter: 'blur(10px)', */
+                  /*   backdropFilter: 'blur(10px)', */
                 }}
               >
                 <h3
@@ -305,6 +304,7 @@ function Home() {
               title="Painéis Solares"
               description="Instalação de sistemas de autoconsumo com baterias e monitorização inteligente."
               link="/paineis-solares"
+              backgroundImage={siteConfig.images.paineisSolares}
               delay={0}
             />
             <ServiceCard
@@ -312,6 +312,7 @@ function Home() {
               title="Carregadores Elétricos"
               description="Wallboxes para moradias e condomínios. Instalação certificada e rápida."
               link="/carregadores-carros-eletricos"
+              backgroundImage={siteConfig.images.carregadoresWallbox}
               delay={0.1}
             />
             <ServiceCard
@@ -319,14 +320,8 @@ function Home() {
               title="Instalações Elétricas"
               description="Reparações, remodelações e instalações elétricas completas."
               link="/instalacoes-eletricas"
+              backgroundImage={siteConfig.images.electricidadeMoradia}
               delay={0.2}
-            />
-            <ServiceCard
-              icon={Building}
-              title="Condomínios"
-              description="Manutenção de zonas comuns, garagens, portões e intercomunicadores."
-              link="/eletricidade-condominios"
-              delay={0.3}
             />
           </div>
         </div>
@@ -481,6 +476,7 @@ function Home() {
         </div>
       </section>
       {/* Service Areas */}
+
       <section className="section section-navy">
         <div className="container">
           <motion.div
@@ -511,37 +507,8 @@ function Home() {
               Atendemos Porto, Maia, Matosinhos, Vila Nova de Gaia e todos os
               arredores.
             </p>
-            <div
-              style={{
-                display: 'flex',
-                gap: 'var(--spacing-sm)',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
-              }}
-            >
-              {[
-                'Porto',
-                'Maia',
-                'Matosinhos',
-                'Vila Nova de Gaia',
-                'Valongo',
-                'Gondomar',
-                'Póvoa de Varzim',
-                'Vila do Conde',
-              ].map((city, i) => (
-                <span
-                  key={i}
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.1)',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '20px',
-                    color: 'var(--color-white)',
-                  }}
-                >
-                  {city}
-                </span>
-              ))}
-            </div>
+
+            <ZonasMarquee />
           </motion.div>
         </div>
       </section>
