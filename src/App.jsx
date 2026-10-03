@@ -12,7 +12,7 @@ import InstalacoesEletricas from './pages/InstalacoesEletricas'
 import ObrasRealizadas from './pages/ObrasRealizadas'
 import SobreNos from './pages/SobreNos'
 import Contactos from './pages/Contactos'
-import Servicos from './pages/Servicos'
+import Servicos from './pages/Servicos' 
 
 function Layout() {
   return (
