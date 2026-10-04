@@ -1,0 +1,52 @@
+[
+  {
+    "id": "moradia-braga",
+    "titulo": "Instalação elétrica numa moradia",
+    "local": "Braga",
+    "categoria": "Instalações Elétricas",
+    "descricao": "",
+    "pasta": "Moradia Braga",
+    "imagens": [
+      "Captura de ecrã 2026-10-04 174539.png",
+      "Captura de ecrã 2026-10-04 174544.png",
+      "Captura de ecrã 2026-10-04 174549.png",
+      "Captura de ecrã 2026-10-04 174554.png",
+      "Captura de ecrã 2026-10-04 174559.png",
+      "Captura de ecrã 2026-10-04 174605.png"
+    ]
+  },
+  {
+    "id": "moradia-prado",
+    "titulo": "Moradia",
+    "local": "Prado",
+    "categoria": "Instalações Elétricas",
+    "descricao": "",
+    "pasta": "Moradia Vila de Prado",
+    "imagens": [
+      "Captura de ecrã 2026-10-04 174438.png",
+      "Captura de ecrã 2026-10-04 174444.png",
+      "Captura de ecrã 2026-10-04 174452.png",
+      "Captura de ecrã 2026-10-04 174457.png",
+      "Captura de ecrã 2026-10-04 174503.png",
+      "Captura de ecrã 2026-10-04 174508.png",
+      "Captura de ecrã 2026-10-04 174514.png"
+    ]
+  },
+  {
+    "id": "moradia-prado-paineis",
+    "titulo": "Moradia Paineis",
+    "local": "Prado",
+    "categoria": "Paineis",
+    "descricao": "",
+    "pasta": "Paineis",
+    "imagens": [
+      "Captura de ecrã 2026-10-04 174438.png",
+      "Captura de ecrã 2026-10-04 174444.png",
+      "Captura de ecrã 2026-10-04 174452.png",
+      "Captura de ecrã 2026-10-04 174457.png",
+      "Captura de ecrã 2026-10-04 174503.png",
+      "Captura de ecrã 2026-10-04 174508.png",
+      "Captura de ecrã 2026-10-04 174514.png"
+    ]
+  }
+]

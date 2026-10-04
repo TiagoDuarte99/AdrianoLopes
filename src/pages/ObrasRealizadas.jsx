@@ -1,121 +1,81 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
-import { motion } from 'framer-motion';
-import ProjectCard from '../components/ProjectCard';
-import ProjectModal from '../components/ProjectModal';
-import { siteConfig } from '../config/site';
+import { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Phone } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-const allProjects = [
-  {
-    id: 1,
-    title: 'Instalação Painéis Solares 6kW',
-    location: 'Maia',
-    description: 'Sistema completo com baterias e monitorização',
-    images: ['/trabalhos/projeto-01/1.jpg', '/trabalhos/projeto-01/2.jpg'],
-    category: 'Painéis Solares',
-    fullDescription:
-      'Instalação de sistema de autoconsumo de 6kW em moradia unifamiliar na Maia. O sistema inclui 12 painéis solares, inversor híbrido, baterias de 10kWh e sistema de monitorização via app.',
-    features: [
-      '12 painéis monocristalinos',
-      'Inversor híbrido 6kW',
-      'Baterias 10kWh',
-      'Monitorização remota',
-      'Legalização DGEG',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Carregadores Condomínio Parque',
-    location: 'Porto',
-    description: '4 wallboxes 22kW com gestão de carga',
-    images: ['/trabalhos/projeto-02/1.jpg'],
-    category: 'Carregadores',
-    fullDescription:
-      'Instalação de 4 carregadores de 22kW em condomínio no Porto, com sistema de gestão de carga dinâmica e acesso por app.',
-    features: [
-      '4 wallboxes 22kW',
-      'Gestão de carga',
-      'Acesso RFID',
-      'Faturação automática',
-    ],
-  },
-  {
-    id: 3,
-    title: 'Remodelação Elétrica T3',
-    location: 'Matosinhos',
-    description: 'Apartamento completo com certificação',
-    images: ['/trabalhos/projeto-03/1.jpg'],
-    category: 'Instalações',
-    fullDescription:
-      'Remodelação total da instalação elétrica de apartamento T3, incluindo quadro novo, 35 pontos de luz e tomadas, e certificação.',
-    features: [
-      'Quadro elétrico novo',
-      '35 pontos',
-      'Iluminação LED',
-      'Certificação ARC',
-    ],
-  },
-  {
-    id: 4,
-    title: 'Iluminação Garagem Condomínio',
-    location: 'Vila Nova de Gaia',
-    description: '60 lugares com sensores',
-    images: ['/trabalhos/projeto-04/1.jpg'],
-    category: 'Condomínios',
-    fullDescription:
-      'Substituição de iluminação de garagem de condomínio com 60 lugares, instalação de sensores de presença e sistema de gestão.',
-    features: [
-      '60 pontos LED',
-      'Sensores presença',
-      'Gestão automática',
-      'Poupança 70%',
-    ],
-  },
-  {
-    id: 5,
-    title: 'Sistema Solar Condomínio',
-    location: 'Porto',
-    description: 'Autoconsumo coletivo 30kW',
-    images: ['/trabalhos/projeto-05/1.jpg'],
-    category: 'Painéis Solares',
-    fullDescription:
-      'Instalação de sistema de autoconsumo coletivo para condomínio com 20 frações. Sistema de 30kW com distribuição proporcional.',
-    features: [
-      '30kW potência',
-      '60 painéis',
-      '20 frações',
-      'Monitorização individual',
-    ],
-  },
-  {
-    id: 6,
-    title: 'Carregador Moradia Tesla',
-    location: 'Maia',
-    description: 'Wallbox 11kW dedicada',
-    images: ['/trabalhos/projeto-06/1.jpg'],
-    category: 'Carregadores',
-    fullDescription:
-      'Instalação de wallbox Tesla de 11kW em moradia unifamiliar, com circuito dedicado e proteção diferencial.',
-    features: [
-      'Wallbox 11kW',
-      'Circuito dedicado',
-      'Proteção tipo B',
-      'Configuração app',
-    ],
-  },
-];
+import ObraCarousel from '../components/ObraCarousel'
+import ProjectModal from '../components/ProjectModal'
+import { siteConfig } from '../config/site'
+import { carregarObras } from '../data/obras'
 
 function ObrasRealizadas() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [obras, setObras] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [selectedProject, setSelectedProject] =
+    useState(null)
+
+  const [categoriaSelecionada, setCategoriaSelecionada] =
+    useState('todas')
+
+  useEffect(() => {
+    let ativo = true
+
+    async function carregarDados() {
+      try {
+        const dados = await carregarObras()
+
+        if (ativo) {
+          setObras(dados)
+        }
+      } catch (erro) {
+        console.error(erro)
+
+        if (ativo) {
+          setError(
+            'Não foi possível carregar as obras.',
+          )
+        }
+      } finally {
+        if (ativo) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    carregarDados()
+
+    return () => {
+      ativo = false
+    }
+  }, [])
+
+  const categorias = useMemo(() => {
+    const categoriasEncontradas = obras
+      .map((obra) => obra.categoria)
+      .filter(Boolean)
+
+    return [...new Set(categoriasEncontradas)].sort(
+      (a, b) => a.localeCompare(b, 'pt'),
+    )
+  }, [obras])
+
+  const obrasFiltradas = useMemo(() => {
+    if (categoriaSelecionada === 'todas') {
+      return obras
+    }
+
+    return obras.filter(
+      (obra) =>
+        obra.categoria === categoriaSelecionada,
+    )
+  }, [obras, categoriaSelecionada])
 
   return (
     <div style={{ minHeight: '100vh' }}>
       <section
         style={{
-          backgroundImage: 
-           `url(${siteConfig.images.obras})
-         `,
+          backgroundImage: `url(${siteConfig.images.obras})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -126,7 +86,6 @@ function ObrasRealizadas() {
           overflow: 'hidden',
         }}
       >
-        {' '}
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -134,37 +93,93 @@ function ObrasRealizadas() {
             transition={{ duration: 0.6 }}
             style={{ textAlign: 'center' }}
           >
-            <h1 style={{ color: '#ffffff', marginBottom: '1rem' }}>
+            <h1
+              style={{
+                color: '#ffffff',
+                marginBottom: '1rem',
+              }}
+            >
               Obras Realizadas
             </h1>
+
             <p
-              style={{ color: '#cccccc', maxWidth: '600px', margin: '0 auto' }}
+              style={{
+                color: '#cccccc',
+                maxWidth: '600px',
+                margin: '0 auto',
+              }}
             >
-              Confira alguns dos nossos projetos recentes em painéis solares,
-              carregadores elétricos e instalações elétricas.
+              Confira alguns dos nossos projetos recentes
+              em instalações elétricas.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {allProjects.map((project, i) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={setSelectedProject}
-                delay={i * 0.1}
+      <section className="obras-list">
+        <div className="obras-container">
+          {!isLoading && !error && categorias.length > 0 && (
+            <div className="obras-filtros">
+              <label htmlFor="categoria">
+                Filtrar por categoria
+              </label>
+
+              <select
+                id="categoria"
+                value={categoriaSelecionada}
+                onChange={(event) => {
+                  setCategoriaSelecionada(
+                    event.target.value,
+                  )
+                }}
+              >
+                <option value="todas">
+                  Todas as categorias
+                </option>
+
+                {categorias.map((categoria) => (
+                  <option
+                    key={categoria}
+                    value={categoria}
+                  >
+                    {categoria}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {isLoading && <p>A carregar obras...</p>}
+
+          {error && (
+            <p className="obras-error">{error}</p>
+          )}
+
+          {!isLoading &&
+            !error &&
+            obras.length === 0 && (
+              <p>
+                Ainda não existem trabalhos disponíveis.
+              </p>
+            )}
+
+          {!isLoading &&
+            !error &&
+            obras.length > 0 &&
+            obrasFiltradas.length === 0 && (
+              <p>
+                Não existem obras nesta categoria.
+              </p>
+            )}
+
+          {!isLoading &&
+            !error &&
+            obrasFiltradas.map((obra) => (
+              <ObraCarousel
+                key={obra.id}
+                obra={obra}
               />
             ))}
-          </div>
         </div>
       </section>
 
@@ -181,12 +196,25 @@ function ObrasRealizadas() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 style={{ color: '#0b1f33', marginBottom: '1rem' }}>
+            <h2
+              style={{
+                color: '#0b1f33',
+                marginBottom: '1rem',
+              }}
+            >
               Pretende um Projeto Semelhante?
             </h2>
-            <p style={{ color: '#0b1f33', marginBottom: '2rem' }}>
-              Contacte-nos para um orçamento gratuito e sem compromisso.
+
+            <p
+              style={{
+                color: '#0b1f33',
+                marginBottom: '2rem',
+              }}
+            >
+              Contacte-nos para um orçamento gratuito e
+              sem compromisso.
             </p>
+
             <div
               style={{
                 display: 'flex',
@@ -195,15 +223,23 @@ function ObrasRealizadas() {
                 flexWrap: 'wrap',
               }}
             >
-              <Link to="/contactos" className="btn btn-navy btn-lg">
+              <Link
+                to="/contactos"
+                className="btn btn-navy btn-lg"
+              >
                 Pedir Orçamento
               </Link>
+
               <a
-                href="tel:+351910000000"
+                href={siteConfig.phoneLink}
                 className="btn btn-outline btn-lg"
-                style={{ borderColor: '#0b1f33', color: '#0b1f33' }}
+                style={{
+                  borderColor: '#0b1f33',
+                  color: '#0b1f33',
+                }}
               >
-                <Phone size={20} /> Ligar
+                <Phone size={20} />
+                Ligar
               </a>
             </div>
           </motion.div>
@@ -217,7 +253,7 @@ function ObrasRealizadas() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default ObrasRealizadas;
+export default ObrasRealizadas

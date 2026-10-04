@@ -1,0 +1,11 @@
+{
+  "id": "moradia-braga",
+  "titulo": "Instalação elétrica numa moradia",
+  "local": "Braga",
+  "categoria": "Instalações Elétricas",
+  "imagens": [
+    "foto-1.webp",
+    "foto-2.webp",
+    "foto-3.webp"
+  ]
+}

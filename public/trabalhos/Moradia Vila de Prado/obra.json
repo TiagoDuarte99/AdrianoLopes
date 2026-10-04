@@ -1,0 +1,13 @@
+{
+  "id": "moradia-prado",
+  "titulo": "Moradia",
+  "local": "Prado",
+  "categoria": "Instalações Elétricas",
+  "imagens": [
+    "foto-1.webp",
+    "foto-2.webp",
+    "foto-3.webp",
+    "foto-4.webp",
+    "foto-5.webp"
+  ]
+}
