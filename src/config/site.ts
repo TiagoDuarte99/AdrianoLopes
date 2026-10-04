@@ -6,6 +6,7 @@ import carregadoresWallbox from '../assets/Carregadores-wallbox.webp';
 import electricidadeMoradia from '../assets/Electricidade-moradia.webp';
 import contactos from '../assets/contactos.webp';
 import obras from '../assets/obras.webp';
+import sobreNos from '../assets/sobre-nos.webp';
 
 export const siteConfig = {
   name: 'Adriano Lopes',
@@ -45,7 +46,8 @@ export const siteConfig = {
     electricidadeMoradia: electricidadeMoradia,
     carregadoresWallbox: carregadoresWallbox,
     contactos: contactos,
-    obras:obras
+    obras:obras,
+    sobreNos: sobreNos
   },
 
   serviceAreas: [

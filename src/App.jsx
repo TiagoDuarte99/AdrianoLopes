@@ -12,7 +12,6 @@ import InstalacoesEletricas from './pages/InstalacoesEletricas'
 import ObrasRealizadas from './pages/ObrasRealizadas'
 import SobreNos from './pages/SobreNos'
 import Contactos from './pages/Contactos'
-import Servicos from './pages/Servicos' 
 
 function Layout() {
   return (
@@ -39,7 +38,6 @@ function App() {
           <Route path="instalacoes-eletricas" element={<InstalacoesEletricas />} />
           <Route path="obras-realizadas" element={<ObrasRealizadas />} />
           <Route path="sobre-nos" element={<SobreNos />} />
-          <Route path="servicos" element={<Servicos />} />
           <Route path="contactos" element={<Contactos />} />
         </Route>
       </Routes>

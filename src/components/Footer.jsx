@@ -25,10 +25,6 @@ function Footer() {
       path: '/instalacoes-eletricas',
       label: 'Instalações Elétricas',
     },
-    {
-      path: '/eletricidade-condominios',
-      label: 'Condomínios',
-    },
   ];
 
   const quickLinks = [
