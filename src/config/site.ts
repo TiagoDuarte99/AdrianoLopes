@@ -5,7 +5,7 @@ import paineisSolares from '../assets/paineis-solares.webp';
 import carregadoresWallbox from '../assets/Carregadores-wallbox.webp';
 import electricidadeMoradia from '../assets/Electricidade-moradia.webp';
 import contactos from '../assets/contactos.webp';
-import obras from '../assets/obras.webp';
+import obras from '../assets/obras-final.webp';
 import sobreNos from '../assets/sobre-nos.webp';
 
 export const siteConfig = {
